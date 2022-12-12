@@ -19,7 +19,7 @@ public struct Day6: Runnable {
     public init() { }
 
     public func run() throws -> Result {
-        let content = try! readFile("day6-input", withExtension: "txt")
+        let content = try readFile("day6-input", withExtension: "txt")
         
         func findMarker(length: Int) -> Marker? {
             let initialLengthRange = ..<content.index(content.startIndex, offsetBy: length)
