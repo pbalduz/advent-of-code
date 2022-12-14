@@ -47,10 +47,10 @@ public struct Day8: Runnable {
     }
 }
 
-typealias Tree = Int
-typealias Forest = [[Tree]]
+private typealias Tree = Int
+private typealias Forest = [[Tree]]
 
-extension Forest {
+private extension Forest {
     subscript(position: Position) -> Int? {
         guard
             position.y >= 0,
@@ -126,7 +126,7 @@ extension Forest {
     }
 }
 
-struct Position {
+private struct Position {
     let x: Int
     let y: Int
 }

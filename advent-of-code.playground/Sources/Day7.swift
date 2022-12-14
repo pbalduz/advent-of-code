@@ -2,7 +2,7 @@ import Foundation
 import RegexBuilder
 
 public struct Day7: Runnable {
-    
+
     public struct Result: CustomStringConvertible {
         let size1: Int
         let size2: Int
@@ -19,10 +19,10 @@ public struct Day7: Runnable {
 
     public func run() throws -> Result {
         let content = try readFile("day7-input", withExtension: "txt")
-        
+
         let root = Directory(name: "/")
         var current: Directory = root
-        
+
         let matches = content.matches(of: regex)
         for match in matches {
             if let command = match.1, let directoryName = match.2 {
@@ -44,12 +44,12 @@ public struct Day7: Runnable {
                 current.files.append(file)
             }
         }
-        
+
         let size1 = root
             .sizesTree
             .filter { $0 <= 100_000 }
             .reduce(0, +)
-        
+
         let totalSizeAvailable = 70_000_000
         let sizeNeeded = 30_000_000
         let freeMemory = totalSizeAvailable - root.size
@@ -58,7 +58,7 @@ public struct Day7: Runnable {
             .sizesTree
             .filter { $0 + freeMemory >= sizeNeeded }
             .min()
-        
+
         return Result(
             size1: size1,
             size2: size2 ?? 0
@@ -66,7 +66,7 @@ public struct Day7: Runnable {
     }
 }
 
-let commandRegex = Regex {
+private let commandRegex = Regex {
     "$"
     OneOrMore(.whitespace)
     Capture {
@@ -83,7 +83,7 @@ let commandRegex = Regex {
     }
 }
 
-let directoryRegex = Regex {
+private let directoryRegex = Regex {
     "dir"
     OneOrMore(.whitespace)
     Capture {
@@ -91,7 +91,7 @@ let directoryRegex = Regex {
     }
 }
 
-let fileRegex = Regex {
+private let fileRegex = Regex {
     Capture {
         OneOrMore(.digit)
     }
@@ -101,7 +101,7 @@ let fileRegex = Regex {
     }
 }
 
-let regex = Regex {
+private let regex = Regex {
     ChoiceOf {
         commandRegex
         directoryRegex
@@ -113,14 +113,14 @@ class Directory {
     let name: String
     var children: [Directory]
     var files: [File]
-    
+
     weak var parent: Directory?
-    
+
     var size: Int {
         let filesSize = files.map(\.size).reduce(0, +)
         return children.map(\.size).reduce(filesSize, +)
     }
-    
+
     var sizesTree: [Int] {
         [size] + children.flatMap(\.sizesTree)
     }
@@ -131,7 +131,7 @@ class Directory {
         self.children = []
         self.files = []
     }
-    
+
     func findDirectory(_ directoryName: String) -> Directory? {
         children.first { $0.name == directoryName }
     }
@@ -140,7 +140,7 @@ class Directory {
 class File {
     let name: String
     let size: Int
-    
+
     init(name: String, size: Int) {
         self.name = name
         self.size = size
