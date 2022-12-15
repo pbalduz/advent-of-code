@@ -35,8 +35,8 @@ public struct Day10: Runnable {
         }
 
         for row in cycles.chunked(into: 40) {
-            for cycle in row.enumerated() {
-                let pixel = abs(cycle.offset - cycle.element.value) <= 1 ? "⚪️" : "⚫️"
+            for (offset, value) in row.enumerated() {
+                let pixel = abs(offset - value) <= 1 ? "⚪️" : "⚫️"
                 print(pixel, terminator: " ")
             }
             print("\n")
@@ -44,7 +44,7 @@ public struct Day10: Runnable {
 
         let cyclesOfInterest = [20, 60, 100, 140, 180, 220]
         let signalStrengthsSum = cyclesOfInterest
-            .map { cycles[$0 - 1].value * $0 }
+            .map { cycles[$0 - 1] * $0 }
             .reduce(0, +)
 
         return Result(signalStrengthsSum: signalStrengthsSum)
