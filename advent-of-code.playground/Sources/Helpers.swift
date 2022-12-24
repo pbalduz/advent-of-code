@@ -31,4 +31,10 @@ extension Array {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
     }
+
+    func appending(contentsOf array: [Element]) -> [Element] {
+        var copy = self
+        copy.append(contentsOf: array)
+        return copy
+    }
 }
