@@ -37,4 +37,25 @@ extension Array {
         copy.append(contentsOf: array)
         return copy
     }
+
+    func removingDuplicates() -> [Element] where Element: Hashable {
+        Array(Set(self))
+    }
+}
+
+extension ClosedRange<Int> {
+    func bounded(by other: ClosedRange<Int>) -> ClosedRange<Int>? {
+        guard overlaps(other) else {
+            return nil
+        }
+        return Swift.max(lowerBound, other.lowerBound) ... Swift.min(upperBound, other.upperBound)
+    }
+}
+
+extension Sequence where Element == ClosedRange<Int> {
+    func union() -> Set<Int> {
+        reduce(into: Set<Int>()) { result, range in
+            result.formUnion(range)
+        }
+    }
 }
