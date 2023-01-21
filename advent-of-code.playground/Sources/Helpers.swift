@@ -59,3 +59,22 @@ extension Sequence where Element == ClosedRange<Int> {
         }
     }
 }
+
+extension Collection {
+    func combinations(count: Int) -> [[Element]] {
+        if count == 0 {
+            return [[]]
+        }
+
+        guard let first = self.first else {
+            return []
+        }
+
+        let head = [first]
+        let subCombinations = self.combinations(count: count - 1)
+        var ret = subCombinations.map { head + $0 }
+        ret += self.dropFirst().combinations(count: count)
+
+        return ret
+    }
+}
