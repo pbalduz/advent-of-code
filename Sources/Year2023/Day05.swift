@@ -1,9 +1,14 @@
+import Core
 import RegexBuilder
 
-struct Day05: AdventDay {
+public struct Day05: AdventDay {
     let data: String
 
-    func part1() -> Any {
+    public init(data: String) {
+        self.data = data
+    }
+
+    public func part1() -> Any {
         let match = data.wholeMatch(of: regex)
         let seeds = match!.output.1
         let categories = match!.output.2.map(CategoryMap.init)
@@ -14,7 +19,7 @@ struct Day05: AdventDay {
         }.min()!
     }
 
-    func part2() -> Any {
+    public func part2() -> Any {
         let match = data.wholeMatch(of: regex)
         let seeds = match!.output.1
             .chunks(ofCount: 2)

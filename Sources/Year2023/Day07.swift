@@ -1,11 +1,17 @@
-struct Day07: AdventDay {
+import Core
+
+public struct Day07: AdventDay {
     let data: String
 
-    func part1() -> Any {
+    public init(data: String) {
+        self.data = data
+    }
+
+    public func part1() -> Any {
         computeWinnings(by: Hand.compare)
     }
 
-    func part2() -> Any {
+    public func part2() -> Any {
         computeWinnings(by: Hand.compareWithJokers)
     }
 

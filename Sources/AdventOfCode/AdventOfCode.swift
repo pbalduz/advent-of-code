@@ -1,14 +1,11 @@
 import ArgumentParser
+import Core
+import Foundation
+import Year2024
 
 // Add each new day implementation to this array:
 let allChallenges: [any AdventDay] = [
-    Day01(),
-    Day02(),
-    Day03(),
-    Day04(),
-	Day05(),
-    Day06(),
-    Day07()
+    Day01()
 ]
 
 @main
@@ -70,5 +67,31 @@ struct AdventOfCode: AsyncParsableCommand {
                 print("Looks like you're benchmarking debug code. Try swift run -c release")
             #endif
         }
+    }
+}
+
+extension AdventDay {
+    /// An initializer that loads the test data from the corresponding data file.
+    public init() {
+        self.init(data: Self.loadData(challengeDay: Self.day))
+    }
+
+    static func loadData(challengeDay: Int) -> String {
+        let dayString = String(format: "%02d", challengeDay)
+        let dataFilename = "Day\(dayString)"
+        let dataURL = Bundle.module.url(
+            forResource: dataFilename,
+            withExtension: "txt",
+            subdirectory: "Data")
+
+        guard let dataURL,
+              let data = try? String(contentsOf: dataURL)
+        else {
+            fatalError("Couldn't find file '\(dataFilename).txt' in the 'Data' directory.")
+        }
+
+        // On Windows, line separators may be CRLF. Converting to LF so that \n
+        // works for string parsing.
+        return data.replacingOccurrences(of: "\r", with: "")
     }
 }

@@ -1,12 +1,6 @@
 // swift-tools-version: 5.9
 import PackageDescription
 
-let dependencies: [Target.Dependency] = [
-    .product(name: "Algorithms", package: "swift-algorithms"),
-    .product(name: "Collections", package: "swift-collections"),
-    .product(name: "ArgumentParser", package: "swift-argument-parser")
-]
-
 let package = Package(
     name: "AdventOfCode",
     platforms: [.macOS(.v13)],
@@ -28,12 +22,39 @@ let package = Package(
         .executableTarget(name: "2022"),
         .executableTarget(
             name: "AdventOfCode",
-            dependencies: dependencies,
+            dependencies: [
+                .target(name: "Year2023"),
+                .target(name: "Year2024"),
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
+            ],
             resources: [.copy("Data")]
         ),
         .testTarget(
             name: "AdventOfCodeTests",
-            dependencies: ["AdventOfCode"] + dependencies
+            dependencies: ["AdventOfCode"]
+        ),
+        .target(
+            name: "Year2023",
+            dependencies: [
+                .product(name: "Algorithms", package: "swift-algorithms"),
+                .product(name: "Collections", package: "swift-collections"),
+                .target(name: "Core")
+            ]
+        ),
+        .target(
+            name: "Year2024",
+            dependencies: [
+                .product(name: "Algorithms", package: "swift-algorithms"),
+                .product(name: "Collections", package: "swift-collections"),
+                .target(name: "Core")
+            ]
+        ),
+        .target(
+            name: "Core",
+            dependencies: [
+                .product(name: "Algorithms", package: "swift-algorithms"),
+                .product(name: "Collections", package: "swift-collections")
+            ]
         )
     ]
 )

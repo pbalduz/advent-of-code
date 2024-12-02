@@ -1,10 +1,15 @@
+import Core
 import Foundation
 import RegexBuilder
 
-struct Day04: AdventDay {
+public struct Day04: AdventDay {
     let data: String
 
-    func part1() -> Any {
+    public init(data: String) {
+        self.data = data
+    }
+
+    public func part1() -> Any {
         let cards = mapCards(input: data)
         let cardsValues = cards.map { card in
             let winningCount = card.matchingCount
@@ -19,7 +24,7 @@ struct Day04: AdventDay {
         return Int(cardsValues.reduce(0, +))
     }
 
-    func part2() -> Any {
+    public func part2() -> Any {
         let cards = mapCards(input: data)
         return cards
             .reduce(into: Array(repeating: 1, count: cards.count)) { result, card in

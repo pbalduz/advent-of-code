@@ -1,11 +1,16 @@
 import Algorithms
+import Core
 import Foundation
 import RegexBuilder
 
-struct Day03: AdventDay {
+public struct Day03: AdventDay {
     let data: String
-        
-    func part1() -> Any {
+
+    public init(data: String) {
+        self.data = data
+    }
+
+    public func part1() -> Any {
         let (numbers, symbols) = mapData()
         let partNumbers = symbols
             .flatMap { symbol in
@@ -18,7 +23,7 @@ struct Day03: AdventDay {
             .reduce(0, +)
     }
     
-    func part2() -> Any {
+    public func part2() -> Any {
         let (numbers, symbols) = mapData()
         let gearRatios = symbols
             .filter { $0.value == "*" }

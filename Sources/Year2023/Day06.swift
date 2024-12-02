@@ -1,9 +1,14 @@
+import Core
 import RegexBuilder
 
-struct Day06: AdventDay {
+public struct Day06: AdventDay {
     let data: String
 
-    func part1() -> Any {
+    public init(data: String) {
+        self.data = data
+    }
+
+    public func part1() -> Any {
         let races = data
             .wholeMatch(of: regex)
             .map {
@@ -16,7 +21,7 @@ struct Day06: AdventDay {
             .reduce(1, *)
     }
 
-    func part2() -> Any {
+    public func part2() -> Any {
         let race = data
             .wholeMatch(of: regex)
             .map {

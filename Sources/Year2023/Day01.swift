@@ -1,7 +1,13 @@
-struct Day01: AdventDay {
-    let data: String
-    
-    func part1() -> Any {
+import Core
+
+public struct Day01: AdventDay {
+    public let data: String
+
+    public init(data: String) {
+        self.data = data
+    }
+
+    public func part1() -> Int {
         data.components(separatedBy: "\n")
             .map {
                 let digits = $0.compactMap(\.wholeNumberValue)
@@ -16,7 +22,7 @@ struct Day01: AdventDay {
             .reduce(0, +)
     }
 
-    func part2() -> Any {
+    public func part2() -> Int {
         data.components(separatedBy: "\n")
             .map { line in
                 var numbers = [Int]()

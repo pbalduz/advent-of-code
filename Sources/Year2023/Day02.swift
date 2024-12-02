@@ -1,13 +1,18 @@
+import Core
 import RegexBuilder
 
-struct Day02: AdventDay {
+public struct Day02: AdventDay {
     let data: String
-    
+
+    public init(data: String) {
+        self.data = data
+    }
+
     let redTotal = 12
     let greenTotal = 13
     let blueTotal = 14
     
-    func part1() -> Any {
+    public func part1() -> Any {
         data.matches(of: gameRegex)
             .reduce(into: 0) { result, value in
                 let sets = value.output.2
@@ -31,7 +36,7 @@ struct Day02: AdventDay {
             }
     }
     
-    func part2() -> Any {
+    public func part2() -> Any {
         data.matches(of: gameRegex)
             .map {
                 $0.output.2
