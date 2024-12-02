@@ -16,7 +16,8 @@ let package = Package(
         .package(
             url: "https://github.com/apple/swift-argument-parser.git",
             .upToNextMajor(from: "1.2.0")
-        )
+        ),
+        .package(url: "https://github.com/pointfreeco/swift-parsing", from: "0.13.0")
     ],
     targets: [
         .executableTarget(name: "2022"),
@@ -46,7 +47,14 @@ let package = Package(
             dependencies: [
                 .product(name: "Algorithms", package: "swift-algorithms"),
                 .product(name: "Collections", package: "swift-collections"),
+                .product(name: "Parsing", package: "swift-parsing"),
                 .target(name: "Core")
+            ]
+        ),
+        .testTarget(
+            name: "Year2024Tests",
+            dependencies: [
+                "Year2024"
             ]
         ),
         .target(
