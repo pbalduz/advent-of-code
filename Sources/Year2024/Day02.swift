@@ -33,9 +33,6 @@ private struct Report {
     }
 
     func isSafeWithTolerance() -> Bool {
-        guard !isSafe() else {
-            return true
-        }
         for index in levels.indices {
             var copy = levels
             copy.remove(at: index)
@@ -64,14 +61,3 @@ private let reportList = Many {
 } separator: {
     "\n"
 }
-
-//extension Sequence {
-//    func isSorted(_ isOrdered: (Element, Element) -> Bool) -> Bool {
-//        for i in 1..<self.count {
-//            if !isOrdered(self[i-1], self[i]) {
-//                return false
-//            }
-//        }
-//        return true
-//    }
-//}
