@@ -16,3 +16,19 @@ public struct Point2D: Hashable {
         }
     }
 }
+
+extension Point2D {
+    public static func + (lhs: Point2D, rhs: Point2D) -> Point2D {
+        Point2D(
+            x: lhs.x + rhs.x,
+            y: lhs.y + rhs.y
+        )
+    }
+
+    public static func - (lhs: Point2D, rhs: Point2D) -> Point2D {
+        Point2D(
+            x: lhs.x - rhs.x,
+            y: lhs.y - rhs.y
+        )
+    }
+}

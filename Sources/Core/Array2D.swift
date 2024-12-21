@@ -83,6 +83,13 @@ extension Array2D {
     public func firstPoint(where predicate: (Self.Element) throws -> Bool) rethrows -> Point2D? {
         try firstIndex(where: predicate).map(point)
     }
+
+    public func hasPoint(_ point: Point2D) -> Bool {
+        point.x >= .zero &&
+        point.x < columns &&
+        point.y >= .zero &&
+        point.y < rows
+    }
 }
 
 extension Array2D {
@@ -113,4 +120,26 @@ extension Array2D {
             columns: lines[0].count
         )
     }
+
+    public init(
+        _ string: String,
+        transform: (Point2D, Character) -> Element
+    ) {
+        let lines = string.components(separatedBy: "\n")
+        let data = lines.enumerated().flatMap { lineOffset, line in
+            line.enumerated().map { charOffset, char in
+                let point = Point2D(
+                    x: charOffset,
+                    y: lineOffset
+                )
+                return transform(point, char)
+            }
+        }
+        self.init(
+            data,
+            rows: lines.count,
+            columns: lines[0].count
+        )
+    }
+}
 }
