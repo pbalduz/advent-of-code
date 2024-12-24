@@ -1,6 +1,12 @@
 import _math
 
 extension Int {
+    /// A Boolean value indicating whether this
+    /// integer is even.
+    public var isEven: Bool {
+        self % 2 == 0
+    }
+
     /// The number of single digits in an integer.
     public var digitsCount: Int {
         if self == 0 { return 1 }
