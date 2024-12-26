@@ -93,7 +93,7 @@ extension Array2D {
 }
 
 extension Array2D {
-    func point(for i: Array<Element>.Index) -> Point2D {
+    public func point(for i: Array<Element>.Index) -> Point2D {
         let row = i / rows
         let column = i % columns
         return Point2D(
@@ -102,7 +102,7 @@ extension Array2D {
         )
     }
 
-    func index(for point: Point2D) -> Array<Element>.Index {
+    public func index(for point: Point2D) -> Array<Element>.Index {
         point.y * columns + point.x
     }
 }
