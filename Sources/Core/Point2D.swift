@@ -32,3 +32,43 @@ extension Point2D {
         )
     }
 }
+
+extension Point2D {
+    public enum NeighboursDisplay {
+        case cross
+        case diagonal
+        case square
+    }
+
+    public func neighbours(display: NeighboursDisplay) -> [Point2D] {
+        switch display {
+        case .cross:
+            [
+                Point2D(x: x - 1, y: y),
+                Point2D(x: x + 1, y: y),
+                Point2D(x: x, y: y - 1),
+                Point2D(x: x, y: y + 1)
+            ]
+
+        case .diagonal:
+            [
+                Point2D(x: x - 1, y: y - 1),
+                Point2D(x: x + 1, y: y - 1),
+                Point2D(x: x - 1, y: y + 1),
+                Point2D(x: x + 1, y: y + 1)
+            ]
+
+        case .square:
+            [
+                Point2D(x: x - 1, y: y - 1),
+                Point2D(x: x, y: y - 1),
+                Point2D(x: x + 1, y: y - 1),
+                Point2D(x: x + 1, y: y),
+                Point2D(x: x + 1, y: y + 1),
+                Point2D(x: x, y: y + 1),
+                Point2D(x: x - 1, y: y + 1),
+                Point2D(x: x - 1, y: y)
+            ]
+        }
+    }
+}

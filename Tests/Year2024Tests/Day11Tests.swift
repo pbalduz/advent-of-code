@@ -1,7 +1,7 @@
 import Testing
 import Year2024
 
-struct Day011Tests {
+struct Day11Tests {
     let data = "125 17"
 
     @Test
