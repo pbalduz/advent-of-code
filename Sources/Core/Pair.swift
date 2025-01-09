@@ -10,3 +10,5 @@ public struct Pair<A, B> {
         self.second = second
     }
 }
+
+public typealias PairOf<T> = Pair<T, T>
