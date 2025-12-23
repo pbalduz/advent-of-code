@@ -1,4 +1,4 @@
-import _math
+import Numerics
 
 extension Int {
     /// A Boolean value indicating whether this
@@ -10,12 +10,12 @@ extension Int {
     /// The number of single digits in an integer.
     public var digitsCount: Int {
         if self == 0 { return 1 }
-        return Int.init(log10(Double(abs(self)))) + 1
+        return Int(Double.log10(Double(abs(self)))) + 1
     }
 
     /// Concatenates two integers into a single one.
     public static func || (lhs: Int, rhs: Int) -> Int {
         let digits = rhs.digitsCount
-        return (lhs * Int(pow(10, Double(digits)))) + rhs
+        return (lhs * Int(Double.pow(10, Double(digits)))) + rhs
     }
 }

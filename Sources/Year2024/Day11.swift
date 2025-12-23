@@ -1,5 +1,4 @@
 import Core
-import _math
 import Parsing
 
 public struct Day11: AdventDay {
@@ -51,8 +50,8 @@ public struct Day11: AdventDay {
         case let num where num.digitsCount.isEven:
             let exp = Double(num.digitsCount / 2)
             return [
-                num / Int(pow(10, exp)),
-                num % Int(pow(10, exp))
+                num / Int(Double.pow(10, exp)),
+                num % Int(Double.pow(10, exp))
             ]
 
         default:

@@ -17,6 +17,10 @@ let package = Package(
             url: "https://github.com/apple/swift-argument-parser.git",
             .upToNextMajor(from: "1.2.0")
         ),
+        .package(
+            url: "https://github.com/apple/swift-numerics.git",
+            .upToNextMajor(from: "1.1.1")
+        ),
         .package(url: "https://github.com/pointfreeco/swift-parsing", from: "0.13.0")
     ],
     targets: [
@@ -61,7 +65,8 @@ let package = Package(
             name: "Core",
             dependencies: [
                 .product(name: "Algorithms", package: "swift-algorithms"),
-                .product(name: "Collections", package: "swift-collections")
+                .product(name: "Collections", package: "swift-collections"),
+                .product(name: "Numerics", package: "swift-numerics")
             ]
         )
     ]
