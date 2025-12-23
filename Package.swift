@@ -30,6 +30,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Year2023"),
                 .target(name: "Year2024"),
+                .target(name: "Year2025"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],
             resources: [.copy("Data")]
@@ -59,6 +60,21 @@ let package = Package(
             name: "Year2024Tests",
             dependencies: [
                 "Year2024"
+            ]
+        ),
+        .target(
+            name: "Year2025",
+            dependencies: [
+                .product(name: "Algorithms", package: "swift-algorithms"),
+                .product(name: "Collections", package: "swift-collections"),
+                .product(name: "Parsing", package: "swift-parsing"),
+                .target(name: "Core")
+            ]
+        ),
+        .testTarget(
+            name: "Year2025Tests",
+            dependencies: [
+                "Year2025"
             ]
         ),
         .target(

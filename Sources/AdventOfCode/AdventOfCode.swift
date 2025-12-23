@@ -1,7 +1,7 @@
 import ArgumentParser
 import Core
 import Foundation
-import Year2024
+import Year2025
 
 // Add each new day implementation to this array:
 let allChallenges: [any AdventDay] = [
