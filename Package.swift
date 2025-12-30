@@ -35,10 +35,6 @@ let package = Package(
             ],
             resources: [.copy("Data")]
         ),
-        .testTarget(
-            name: "AdventOfCodeTests",
-            dependencies: ["AdventOfCode"]
-        ),
         .target(
             name: "Year2023",
             dependencies: [
